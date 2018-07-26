@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css 炫酷样式</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 1200px;
+            overflow: hidden;
+            margin: 20px auto 0;
+            background-color: #fff;
+        }
+
+        .box ul {
+            width: 1200px;
+            height: 260px;
+            overflow: hidden;
+        }
+
+        .box ul li {
+            position: relative;
+            width: 172px;
+            height: 100%;
+            overflow: hidden;
+            float: left;
+            cursor: pointer;
+        }
+
+        .box ul li:nth-child(1) {
+            width: 168px;
+        }
+
+        .box ul li .mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, .3);
+        }
+
+        .box ul li .mask h4 {
+            width: 30px;
+            font-size: 30px;
+            line-height: 30px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul id="ulbox">
+
+        </ul>
+    </div>
+
+    <script src="js/jquery-2.1.4.min.js"></script>
+    <script>
+        let data = [{
+                image: "images/20150422_ifold1.jpg",
+                name: "园林酒店",
+                id: 1
+
+            },
+            {
+                image: "images/20150120_ifold2.jpg",
+                name: "情侣酒店",
+                id: 2
+            },
+            {
+                image: "images/20150120_ifold3.jpg",
+                name: "设计师酒店",
+                id: 3
+            },
+            {
+                image: "images/20150120_ifold4.jpg",
+                name: "青年旅舍",
+                id: 4
+            },
+            {
+                image: "images/20150120_ifold5.jpg",
+                name: "特色客栈",
+                id: 5
+            },
+            {
+                image: "images/20150120_ifold6.jpg",
+                name: "海岛酒店",
+                id: 6
+            },
+            {
+                image: "images/20150120_ifold7.jpg",
+                name: "海外温泉",
+                id: 7
+            }
+        ]
+        let aphtml = "";
+
+        for (let i = 0; i < data.length; i++) {
+            aphtml +=
+                `<li>
+                <a href="javascript:;">
+                    <div class="mask">
+                        <h4>${data[i].name}</h4>
+                    </div>
+                    <div class="content" style='background: url("${data[i].image}") no-repeat center;'></div>
+                </a>
+            </li>`
+        }
+        $("#ulbox").html(aphtml);
+        $("#ulbox").on("mouseover", 'li', function () {
+            $(this).find(".mask").hide();
+            $(this).stop().animate({"width": '402px'}, 500);
+            $(this).siblings().stop().animate({"width": '133px'}, 500);
+        })
+        
+        $("#ulbox").on("mouseout", 'li', function () {
+            $(this).find(".mask").show();
+            $(this).stop().animate({"width":'168px'}, 500);
+            $(this).siblings().stop().animate({"width":'172px'}, 500);
+        })
+    </script>
+</body>
+
+</html>
